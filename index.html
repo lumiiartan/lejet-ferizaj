@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="sq">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1b4a8a" />
+    <meta name="description" content="Asistenti i Lejeve – Komuna e Ferizajt. Më shpejt për qytetarin, më saktë për komunën. Demo me të dhëna fiktive." />
+    <title>Asistenti i Lejeve – Komuna e Ferizajt</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/print.css" />
+    <script>
+      try {
+        if (localStorage.getItem("lejet-ferizaj-theme") === "dark") document.documentElement.classList.add("dark");
+        var roleParam = new URLSearchParams(location.search).get("role");
+        if (roleParam) localStorage.setItem("lejet-ferizaj-role", roleParam);
+      } catch (e) {}
+      (function (location) {
+        if (location.search[1] === "/") {
+          var decoded = location.search.slice(1).split("&").map(function (part) {
+            return part.replace(/~and~/g, "&");
+          }).join("?");
+          window.history.replaceState(
+            null,
+            "",
+            location.pathname.slice(0, -location.search.length) + decoded + location.hash
+          );
+        }
+      })(window.location);
+    </script>
+  </head>
+  <body>
+    <div id="app" class="app-shell"></div>
+    <noscript>Ky demo kërkon JavaScript.</noscript>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
